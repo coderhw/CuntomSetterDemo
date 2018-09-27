@@ -23,7 +23,13 @@
 
 @interface HHPerson ()
 {
-    char _personProperty;
+//    char _personProperty;
+    //位域
+    struct {
+        char tall : 1;  //0000 0001
+        char rich : 1;  //0000 0010
+        char handsome : 1; //0000 0100
+    } _personProperty;
 }
 
 @end
@@ -33,47 +39,38 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _personProperty = 0b00000111;
+//        _personProperty = 0b00000111;
     }
     return self;
 }
 
 #pragma mark - setter && getter methods
 - (void)setTall:(BOOL)tall {
-    if(tall){
-        _personProperty |= (HHTallMask);
-    }else{
-        _personProperty &= ~(HHTallMask);
-    }
+    
+    _personProperty.tall = tall;
 }
 
 - (void)setRich:(BOOL)rich {
-    if(rich){
-        _personProperty |= (HHRichMask);
-    }else{
-        _personProperty &= ~(HHRichMask);
-    }
+    _personProperty.rich = rich;
+
 }
 
 - (void)setHandsome:(BOOL)handsome {
-    if(handsome){
-        _personProperty |= (HHHandsomeMask);
-    }else{
-        _personProperty &= ~(HHHandsomeMask);
-    }
+    _personProperty.handsome = handsome;
+
 }
 
 
 - (BOOL)isTall {
-    return !!(_personProperty & (HHTallMask));
+    return _personProperty.tall;
 }
 
 - (BOOL)isRich {
-    return !!(_personProperty & (HHRichMask));
+    return _personProperty.rich;
 }
 
 - (BOOL)isHandsome {
-    return !!(_personProperty & (HHHandsomeMask));
+    return _personProperty.handsome;
 }
 
 

@@ -20,12 +20,13 @@
     [super viewDidLoad];
     
     HHPerson *person = [[HHPerson alloc] init];
+    person.tall = YES;
+    person.rich = YES;
+    person.handsome = NO;
+    
     NSLog(@"tall:%d rich:%d handsome:%d",
           person.tall, person.rich, person.handsome);
     
-    person.handsome = 0;
-    NSLog(@"tall:%d rich:%d handsome:%d",
-          person.tall, person.rich, person.handsome);
 
 }
 
